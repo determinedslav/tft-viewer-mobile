@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import Colors from '../constants/Colors';
 import Layout from '../layout/Layout';
 
-export default function InfoScreen() {
+const InfoScreen = () => {
     return (
         <Layout>
             <View>
@@ -20,3 +20,5 @@ export default function InfoScreen() {
         </Layout>
     )
 }
+
+export default InfoScreen;

@@ -10,5 +10,7 @@ export default {
     secondary: '#11c2d5',
     danger: '#d53d5d',
     iconBackground: '#72cc5d',
-    borderLight: '#efefef'
+    borderLight: '#efefef',
+    containerBackground: '#fafafa',
+    inputBackground: '#fefefe',
 };
