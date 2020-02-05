@@ -9,6 +9,7 @@ import {
 import {useSelector, useDispatch} from "react-redux";
 import API from '../remote';
 import Colors from '../constants/Colors';
+import Label from '../components/Label';
 
 import Layout from '../layout/Layout';
 
@@ -16,13 +17,9 @@ const HomeScreen = () => {
     return ( 
         <Layout>
             <View style={styles.container}>
-                <Text>
-                    Enter username:
-                </Text>
+                <Label text = "Enter username:"/>
                 <TextInput style ={styles.input}/>
-                <Text>
-                    Select region:
-                </Text>
+                <Label text = "Select region:"/>
                 <Picker style ={styles.picker}>
                     <Picker.Item label="EUNA" value="euna1" />
                     <Picker.Item label="EUW" value="euw1" />
