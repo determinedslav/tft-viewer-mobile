@@ -10,6 +10,7 @@ import {useSelector, useDispatch} from "react-redux";
 import API from '../remote';
 import Colors from '../constants/Colors';
 import Label from '../components/Label';
+import Button from '../components/Button';
 
 import Layout from '../layout/Layout';
 
@@ -24,6 +25,7 @@ const HomeScreen = () => {
                     <Picker.Item label="EUNA" value="euna1" />
                     <Picker.Item label="EUW" value="euw1" />
                 </Picker>
+                <Button title="Search" />
             </View>
         </Layout>     
     )
