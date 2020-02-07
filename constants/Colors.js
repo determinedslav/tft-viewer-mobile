@@ -1,7 +1,7 @@
 export default {
     background: {
-        light: '#e4e4e4',
-        dark: '#d1d1d1'
+        light: '#d4d4d4',
+        dark: '#c4c4c4'
     },
     textLight: '#000000',
     textDark: '#080e1e',
@@ -12,6 +12,6 @@ export default {
     danger: '#d53d5d',
     iconBackground: '#72cc5d',
     borderLight: '#efefef',
-    containerBackground: '#fafafa',
-    inputBackground: '#fefefe',
+    containerBackground: '#f5f5f5',
+    inputBackground: '#fcfcfc',
 };

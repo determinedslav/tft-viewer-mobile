@@ -3,6 +3,7 @@ import {View, StyleSheet, FlatList, Image} from "react-native";
 import Constants from "expo-constants";
 import SidebarItem from "./SidebarItem";
 import {FontAwesome, Entypo} from '@expo/vector-icons';
+import Colors from '../constants/Colors';
 
 class SideBar extends Component {
 
@@ -33,11 +34,11 @@ export default SideBar;
 const styles = StyleSheet.create({
     sidebar: {
         flex: 1,
-        backgroundColor:  '#ffffff'
+        backgroundColor:  Colors.containerBackground,
     },
     headerContainer: {
         paddingTop: Constants.statusBarHeight,
-        backgroundColor: '#3a9384',
+        backgroundColor: Colors.headerBackground,
         borderBottomWidth: 1,
     },
     header: {
