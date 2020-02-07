@@ -13,20 +13,16 @@ function Button(props) {
 const styles = StyleSheet.create({
     button: {
         borderWidth: 1,
-        borderColor: Colors.borderLight,
         borderRadius: 5,
         width: 125,
         height: 45,
         padding: 10,
-        marginTop: 20,
-        backgroundColor: Colors.inputBackground,
-        alignSelf: 'flex-end', 
 
     },
     buttonText: {
         fontSize: 16,
         fontWeight: 'bold',
-        textAlign: 'center'
+        textAlign: 'center',
     },
 });
 export default Button;

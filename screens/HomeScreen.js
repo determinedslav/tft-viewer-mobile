@@ -25,7 +25,7 @@ const HomeScreen = () => {
                     <Picker.Item label="EU Nordic and East" value="euna1" />
                     <Picker.Item label="EU West" value="euw1" />
                 </Picker>
-                <Button title="Search" />
+                <Button style={styles.button} title="Search" />
             </View>
             <Card region = "EU Nordic and East" name = "BlackHeart10" rank = "Platinum" division = "II" wins = "10" lp = "5"/>
         </Layout>     
@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
     },
     picker: {
         backgroundColor: Colors.inputBackground,
+    },
+    button: {
+        borderColor: Colors.borderLight,
+        backgroundColor: Colors.inputBackground,
+        marginTop: 20,
+        alignSelf: 'flex-end', 
     }
 
 })

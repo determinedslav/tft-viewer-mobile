@@ -8,10 +8,12 @@ function Card(props) {
 
     return (
         <View style = {styles.container}>
-            <Text style = {[styles.text, styles.textRegion]}>{props.region}</Text>
-            <Text style = {[styles.text, styles.textName]}>{props.name}</Text>
-            <Text style = {styles.text}>{props.rank} {props.division}</Text>
-            <Text style = {styles.text}>{props.wins} Wins {props.lp}LP</Text>
+            <View style = {styles.textContainer}>
+                <Text style = {[styles.text, styles.textRegion]}>{props.region}</Text>
+                <Text style = {[styles.text, styles.textName]}>{props.name}</Text>
+                <Text style = {styles.text}>{props.rank} {props.division}</Text>
+                <Text style = {styles.text}>{props.wins} Wins {props.lp}LP</Text>
+            </View>
             <View style = {styles.buttonContainer}>
                 <Button style = {styles.buttonUpdate} title="Update"/>
                 <Button style = {styles.buttonDelete} title="Delete"/>
@@ -24,10 +26,13 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.containerBackground,
         padding: 15,
         borderRadius: 5,
+    },
+    textContainer: {
         alignItems: 'center',
     },
     buttonContainer: {
-        flexDirection: 'row',
+        flexDirection: 'row',  
+        marginTop: 30,
     },
     text: {
         fontSize: 24,
@@ -46,12 +51,14 @@ const styles = StyleSheet.create({
     buttonUpdate: {
         backgroundColor: Colors.primary,
         borderColor: Colors.primary,
-        alignSelf: 'flex-end',
+        flex: 1,
+        marginRight: 100,
         
     },
     buttonDelete: {
         backgroundColor: Colors.danger,
         borderColor: Colors.danger,
+        flex: 1,
     } 
 });
 export default Card;

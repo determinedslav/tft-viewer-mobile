@@ -18,7 +18,7 @@ class Header extends React.Component {
                 </TouchableOpacity>
             </View>
             <View style={styles.center}>
-                <Text style={styles.title}>Header</Text>
+                <Text style={styles.title}>TFT Viewer</Text>
             </View>
             <View style={styles.right}>
 
@@ -43,7 +43,7 @@ const styles = StyleSheet.create({
     },
     title: {
         color: '#ffffff',
-        fontSize: 16,
+        fontSize: 24,
     },
     right: {
         width: 32
