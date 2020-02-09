@@ -15,8 +15,8 @@ function Card(props) {
                 <Text style = {styles.text}>{props.wins} Wins {props.lp}LP</Text>
             </View>
             <View style = {styles.buttonContainer}>
-                <Button style = {styles.buttonUpdate} title="Update"/>
-                <Button style = {styles.buttonDelete} title="Delete"/>
+                <Button onPress={props.onPress} style = {styles.buttonUpdate} title="Update"/>
+                <Button onPress={props.onPress} style = {styles.buttonDelete} title="Delete"/>
             </View>
         </View>
     )

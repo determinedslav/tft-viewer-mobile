@@ -5,7 +5,7 @@ import Colors from '../constants/Colors';
 function Button(props) {
 
     return (
-        <TouchableOpacity style={[styles.button, props.style]}>
+        <TouchableOpacity onPress={props.onPress} style={[styles.button, props.style]}>
             <Text style={styles.buttonText}>{props.title}</Text>
         </TouchableOpacity>
     )
