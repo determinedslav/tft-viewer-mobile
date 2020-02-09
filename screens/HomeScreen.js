@@ -7,6 +7,8 @@ import {
     Picker,
 } from 'react-native';
 import {useSelector, useDispatch} from "react-redux";
+import {setStats, deleteStat} from '../redux/actions/stats';
+import {setLoading} from '../redux/actions/loading';
 import API from '../remote';
 import Layout from '../layout/Layout';
 import Colors from '../constants/Colors';
@@ -15,6 +17,29 @@ import Button from '../components/Button';
 import Card from '../components/Card';
 
 const HomeScreen = () => {    
+
+    const stats = useSelector(state => state.stats);
+    const isLoading = useSelector(state => state.loading);
+    const dispatch = useDispatch();
+
+    const getStats = async () => {
+        dispatch(setLoading(true));
+        const response = await API.get("all");
+        if(response && response.hasOwnProperty('data')){
+            const newCards = response.data;
+            console.log(newCards);
+            setTimeout(() =>{
+                dispatch(setStats(newCards));
+                dispatch(setLoading(false));
+            },1000);
+        }
+    };
+
+    useEffect(()=>{
+        getStats();
+        
+    }, []);
+
     return ( 
         <Layout>
             <View style={styles.container}>
