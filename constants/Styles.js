@@ -4,6 +4,11 @@ import {
 import Colors from '../constants/Colors'
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: Colors.containerBackground,
+        padding: 15,
+        borderRadius: 5,
+    },
     flex1: {
         flex: 1,
     },

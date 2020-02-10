@@ -16,7 +16,7 @@ import Button from '../components/Button';
 const InfoScreen = () => {
     return (
         <Layout>
-            <View style = {styles.container}>
+            <View style = {Styles.styles.container}>
                 <Text style = {styles.title}>Create your own statistics</Text>
                 <View style = {Styles.styles.rowContainer}>
                 <Picker style = {[Styles.styles.input, Styles.styles.flex1]}>
@@ -52,11 +52,6 @@ const InfoScreen = () => {
 }
 
 const styles = StyleSheet.create({
-    container: {
-        backgroundColor: Colors.containerBackground,
-        padding: 15,
-        borderRadius: 5,
-    },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
