@@ -23,8 +23,8 @@ const HomeScreen = () => {
     const isLoading = useSelector(state => state.loading);
     const dispatch = useDispatch();
 
-    const region = 'euw1';
-    const name = 'determinedslav';
+    const region = 'eun1';
+    const name = 'blackheart10';
     var nameId;
 
     const setId = (id) => {
@@ -65,12 +65,12 @@ const HomeScreen = () => {
                 <TextInput style ={styles.input}/>
                 <Label text = "Select region:"/>
                 <Picker style ={styles.picker}>
-                    <Picker.Item label="EU Nordic and East" value="euna1" />
+                    <Picker.Item label="EU Nordic and East" value="eun1" />
                     <Picker.Item label="EU West" value="euw1" />
                 </Picker>
                 <Button style={styles.button} title="Search" />
             </View>
-            <Card region = "EU Nordic and East" name = "BlackHeart10" rank = "Platinum" division = "II" wins = "10" lp = "5"/>
+            <Card region = "EU Nordic and East" name = "BlackHeart10" rank = "Platinum" division = "II" wins = "13" lp = "5"/>
         </Layout>     
     )
 }
