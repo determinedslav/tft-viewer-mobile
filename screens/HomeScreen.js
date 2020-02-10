@@ -9,9 +9,10 @@ import {
 import {useSelector, useDispatch} from "react-redux";
 import {setStats, deleteStat} from '../redux/actions/stats';
 import {setLoading} from '../redux/actions/loading';
-import API from '../remote';
+import Remote from '../remote';
 import Layout from '../layout/Layout';
 import Colors from '../constants/Colors';
+import API from '../constants/Api'
 import Label from '../components/Label';
 import Button from '../components/Button';
 import Card from '../components/Card';
@@ -22,14 +23,32 @@ const HomeScreen = () => {
     const isLoading = useSelector(state => state.loading);
     const dispatch = useDispatch();
 
+    const region = 'euw1';
+    const name = 'determinedslav';
+    var nameId;
+
+    const setId = (id) => {
+        nameId = id;
+    };
+
     const getStats = async () => {
         dispatch(setLoading(true));
-        const response = await API.get("all");
-        if(response && response.hasOwnProperty('data')){
-            const newCards = response.data;
+        const responseName = await Remote.get(API.protocol + region + API.apiLink + API.nameApi + name + API.key);
+        if(responseName && responseName.hasOwnProperty('data')){
+            const newCards = responseName.data;
             console.log(newCards);
+            setId(newCards.id)
             setTimeout(() =>{
-                dispatch(setStats(newCards));
+                //dispatch();
+                //dispatch(setLoading(false));
+            },1000);
+        }
+        const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + nameId + API.key);
+        if(responseStats && responseStats.hasOwnProperty('data')){
+            const newerCards = responseStats.data;
+            console.log(newerCards);
+            setTimeout(() =>{
+                //dispatch();
                 dispatch(setLoading(false));
             },1000);
         }
@@ -37,7 +56,6 @@ const HomeScreen = () => {
 
     useEffect(()=>{
         getStats();
-        
     }, []);
 
     return ( 
