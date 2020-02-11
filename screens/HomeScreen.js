@@ -5,6 +5,8 @@ import {
     StyleSheet,
     TextInput,
     Picker,
+    FlatList,
+    ActivityIndicator,
 } from 'react-native';
 import {useSelector, useDispatch} from "react-redux";
 import {setStats, deleteStat} from '../redux/actions/stats';
@@ -19,17 +21,26 @@ import Card from '../components/Card';
 
 const HomeScreen = () => {    
 
+    const [selectedValue, setSelectedValue] = useState('java');
     const stats = useSelector(state => state.stats);
     const isLoading = useSelector(state => state.loading);
     const dispatch = useDispatch();
 
-    const region = 'eun1';
-    const name = 'blackheart10';
+    var region = "eun1";
+    var name;
     var nameId;
 
     const setId = (id) => {
         nameId = id;
     };
+    const setName = (username) => {
+        name = username;
+    }
+    const setRegion = (regionId) => {
+        region = regionId;
+    }
+
+
 
     const getStats = async () => {
         dispatch(setLoading(true));
@@ -42,35 +53,61 @@ const HomeScreen = () => {
                 //dispatch();
                 //dispatch(setLoading(false));
             },1000);
-        }
-        const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + nameId + API.key);
-        if(responseStats && responseStats.hasOwnProperty('data')){
-            const newerCards = responseStats.data;
-            console.log(newerCards);
-            setTimeout(() =>{
-                //dispatch();
-                dispatch(setLoading(false));
-            },1000);
-        }
+            const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + nameId + API.key);
+                if(responseStats && responseStats.hasOwnProperty('data')){
+                    const newerCards = responseStats.data.map(item=>{
+                        return {
+                            name: item.summonerName,
+                            rank: item.tier,
+                            division: item.rank,
+                            wins: item.wins,
+                            lp: item.leaguePoints,
+                        }
+                    });
+                    console.log(newerCards);
+                    setTimeout(() =>{
+                        dispatch(setStats(newerCards));
+                        dispatch(setLoading(false));
+                    },1000);
+                } 
+            } 
     };
 
-    useEffect(()=>{
-        getStats();
-    }, []);
+    //useEffect(()=>{
+    //    getStats();
+    //}, []);
+
+    const renderCard = ({item: card}) => {
+        return <Card 
+                    region='EU Nordic and East'
+                    name={card.name}
+                    rank={card.rank}
+                    division={card.division}
+                    wins={card.wins}
+                    lp={card.lp}
+                    //onPress={()=>handleDelete(card)}
+                />
+    }
 
     return ( 
         <Layout>
             <View style={styles.container}>
                 <Label text = "Enter username:"/>
-                <TextInput style ={styles.input}/>
+                <TextInput onChangeText={text=>setName(text)} style ={styles.input}/>
                 <Label text = "Select region:"/>
-                <Picker style ={styles.picker}>
+                <Picker selectedValue={selectedValue} onValueChange={value=>{setRegion(value), setSelectedValue(value)}} style = {styles.picker}>
                     <Picker.Item label="EU Nordic and East" value="eun1" />
                     <Picker.Item label="EU West" value="euw1" />
                 </Picker>
-                <Button style={styles.button} title="Search" />
+                <Button onPress={getStats} style={styles.button} title="Search" />
             </View>
-            <Card region = "EU Nordic and East" name = "BlackHeart10" rank = "Platinum" division = "II" wins = "13" lp = "5"/>
+            {isLoading ? <ActivityIndicator/> :
+            <FlatList 
+                data={stats}
+                renderItem={renderCard}
+                keyExtractor={(_, index)=>`card_${index}`}
+                />
+            }
         </Layout>     
     )
 }

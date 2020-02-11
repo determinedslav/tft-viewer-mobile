@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     textName: {
-        fontSize: 20,
+        fontSize: 22,
         marginBottom: 30,
     },
 
