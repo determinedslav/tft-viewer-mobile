@@ -57,6 +57,7 @@ const HomeScreen = () => {
 
 
     const getStats = async () => {
+        try{ 
         console.log(region + name + nameId);
         dispatch(setLoading(true));
         const responseName = await Remote.get(API.protocol + region + API.apiLink + API.nameApi + name + API.key);
@@ -81,11 +82,19 @@ const HomeScreen = () => {
                     });
                     console.log(newerCards);
                     setTimeout(() =>{
-                        dispatch(setStats(newerCards));
+                        if (newerCards.name != null){
+                            dispatch(setStats(newerCards));
+                        } else {
+                            console.log("eeror");
+                        }                        
                         dispatch(setLoading(false));
                     },1000);
                 } 
             } 
+        } catch {
+            dispatch(setLoading(false));
+            console.log("eeror");
+        }
     };
 
     const renderCard = ({item: card}) => {

@@ -1,9 +1,6 @@
 import axios from 'axios';
-import config from './config';
 
-const intance = axios.create({
-    //baseURL: config.getFullBaseUrl(),
-});
+const intance = axios.create();
 
 export function get(path, params) {
     return intance.get(path, {
