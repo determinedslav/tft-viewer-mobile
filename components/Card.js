@@ -8,15 +8,14 @@ function Card(props) {
 
     return (
         <View style = {styles.container}>
+            <View style = {styles.buttonContainer}>
+                <Button onPress={props.onPress} style = {styles.buttonDelete} title="X"/>
+            </View>
             <View style = {styles.textContainer}>
                 <Text style = {[styles.text, styles.textRegion]}>{props.region}</Text>
                 <Text style = {[styles.text, styles.textName]}>{props.name}</Text>
                 <Text style = {styles.text}>{props.rank} {props.division}</Text>
                 <Text style = {styles.text}>{props.wins} Wins {props.lp}LP</Text>
-            </View>
-            <View style = {styles.buttonContainer}>
-                <Button onPress={props.onPress} style = {styles.buttonUpdate} title="Update"/>
-                <Button onPress={props.onPress} style = {styles.buttonDelete} title="Delete"/>
             </View>
         </View>
     )
@@ -24,20 +23,20 @@ function Card(props) {
 const styles = StyleSheet.create({
     container: {
         backgroundColor: Colors.containerBackground,
-        padding: 15,
+        padding: 10,
         borderRadius: 5,
     },
     textContainer: {
         alignItems: 'center',
+        marginBottom: 20,
     },
     buttonContainer: {
-        flexDirection: 'row',  
-        marginTop: 30,
+        marginBottom: 0,
     },
     text: {
         fontSize: 24,
         fontWeight: 'bold',
-        marginVertical: 2,
+        marginVertical: 3,
     },
     textRegion: {
         fontSize: 22,
@@ -58,7 +57,10 @@ const styles = StyleSheet.create({
     buttonDelete: {
         backgroundColor: Colors.danger,
         borderColor: Colors.danger,
-        flex: 1,
+        alignSelf: "flex-end",
+        width: 25,
+        height: 25,
+        padding: 0,
     } 
 });
 export default Card;
