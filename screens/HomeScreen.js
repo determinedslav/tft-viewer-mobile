@@ -31,6 +31,8 @@ const HomeScreen = () => {
     const isLoading = useSelector(state => state.loading);
     const dispatch = useDispatch();
 
+    var errorMessage;
+
     const setId = (id) => {
         nameId = id;
         console.log(id);
@@ -53,20 +55,14 @@ const HomeScreen = () => {
               return 'Error';
           }
     };
-
-
-
+    
     const getStats = async () => {
-        try{ 
         console.log(region + name + nameId);
         dispatch(setLoading(true));
         const responseName = await Remote.get(API.protocol + region + API.apiLink + API.nameApi + name + API.key);
         if(responseName && responseName.hasOwnProperty('data')){
             setId(responseName.data.id)
-            setTimeout(() =>{
-                //dispatch();
-                //dispatch(setLoading(false));
-            },1000);
+            setTimeout(() =>{},1000);
             const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + nameId + API.key);
             console.log(region + name + nameId);
                 if(responseStats && responseStats.hasOwnProperty('data')){
@@ -82,19 +78,11 @@ const HomeScreen = () => {
                     });
                     console.log(newerCards);
                     setTimeout(() =>{
-                        if (newerCards.name != null){
-                            dispatch(setStats(newerCards));
-                        } else {
-                            console.log("eeror");
-                        }                        
+                        dispatch(setStats(newerCards));                     
                         dispatch(setLoading(false));
                     },1000);
                 } 
             } 
-        } catch {
-            dispatch(setLoading(false));
-            console.log("eeror");
-        }
     };
 
     const renderCard = ({item: card}) => {
@@ -126,6 +114,7 @@ const HomeScreen = () => {
                     <Picker.Item label="EU Nordic and East" value="eun1" />
                     <Picker.Item label="EU West" value="euw1" />
                 </Picker>
+                <Text style={styles.error}>{errorMessage}</Text>
                 <Button onPress={getStats} style={styles.button} title="Search" />
             </View>
             {isLoading ? <ActivityIndicator/> :
@@ -156,10 +145,13 @@ const styles = StyleSheet.create({
     picker: {
         backgroundColor: Colors.inputBackground,
     },
+    error: {
+        color: Colors.danger,
+        marginVertical: 10,
+    },
     button: {
         borderColor: Colors.borderLight,
         backgroundColor: Colors.inputBackground,
-        marginTop: 20,
         alignSelf: 'flex-end', 
     }
 
