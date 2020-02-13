@@ -19,38 +19,29 @@ import Label from '../components/Label';
 import Button from '../components/Button';
 import Card from '../components/Card';
 
-var region = 'eun1';
-var regionFull = 'EU Nordic and East';
-var name;
-var nameId;
-
 const HomeScreen = () => {    
 
     const [selectedValue, setSelectedValue] = useState('java');
+    const [region, setRegion] = useState('eun1');
+    const [regionFull, setRegionFull] = useState('EU Nordic and East');
+    const [name, setName] = useState(' ');
+    const [nameId, setNameId] = useState(' ');
+    const [errorMessage, setErrorMessage] = useState(' ');
+
     const stats = useSelector(state => state.stats);
     const isLoading = useSelector(state => state.loading);
     const dispatch = useDispatch();
 
-    var errorMessage;
-
-    const setId = (id) => {
-        nameId = id;
-        console.log(id);
-    };
-    const setName = (username) => {
-        name = username;
-        console.log(name);
-    };
-    const setRegion = (value) => {
-        region = value;
-        console.log(region);
+    const setRegionState = (value) => {
+        setRegion(value);
+        console.log(value);
         switch(value) {
             case 'eun1':
-                regionFull = 'EU Nordic and East';
-                return;
+                setRegionFull('EU Nordic and East');
+                break;
             case 'euw1':
-                regionFull = 'EU West'
-                return;
+                setRegionFull('EU West');
+                break;
             default:
               return 'Error';
           }
@@ -61,7 +52,7 @@ const HomeScreen = () => {
         dispatch(setLoading(true));
         const responseName = await Remote.get(API.protocol + region + API.apiLink + API.nameApi + name + API.key);
         if(responseName && responseName.hasOwnProperty('data')){
-            setId(responseName.data.id)
+            setNameId(responseName.data.id)
             setTimeout(() =>{},1000);
             const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + nameId + API.key);
             console.log(region + name + nameId);
@@ -107,7 +98,7 @@ const HomeScreen = () => {
                     selectedValue = {selectedValue} 
                     onValueChange = {value => {
                         setSelectedValue(value);
-                        setRegion(value);
+                        setRegionState(value);
                     }} 
                     style = {styles.picker}
                 >
