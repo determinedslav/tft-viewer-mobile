@@ -47,27 +47,37 @@ const HomeScreen = () => {
     
     const getStats = async () => {
         dispatch(setLoading(true));
-        const responseName = await Remote.get(API.protocol + region + API.apiLink + API.nameApi + name + API.key);
-        if(responseName && responseName.hasOwnProperty('data')){
-            setTimeout(() =>{},1000);
-            const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + responseName.data.id + API.key);
-                if(responseStats && responseStats.hasOwnProperty('data')){
-                    const newCardItem = responseStats.data.map(item=>{
-                        return {
-                            region: regionFull,
-                            name: item.summonerName,
-                            rank: item.tier,
-                            division: item.rank,
-                            wins: item.wins,
-                            lp: item.leaguePoints,
-                        }
-                    });
-                    setTimeout(() =>{
-                        dispatch(setStats(newCardItem));                     
-                        dispatch(setLoading(false));
-                    },1000);
+        setErrorMessage(" ");
+        try{
+            const responseName = await Remote.get(API.protocol + region + API.apiLink + API.nameApi + name + API.key);
+            if(responseName && responseName.hasOwnProperty('data')){
+                setTimeout(() =>{},1000);
+                const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + responseName.data.id + API.key);
+                    if(responseStats && responseStats.hasOwnProperty('data')){
+                        const newCardItem = responseStats.data.map(item=>{
+                            return {
+                                region: regionFull,
+                                name: item.summonerName,
+                                rank: item.tier,
+                                division: item.rank,
+                                wins: item.wins,
+                                lp: item.leaguePoints,
+                            }
+                        });
+                        setTimeout(() =>{
+                            if (responseStats.data.length === 0) {
+                                setErrorMessage("No TFT information available for this player");
+                            }
+                            dispatch(setStats(newCardItem));               
+                            dispatch(setLoading(false));
+                        },1000);
+                    } 
                 } 
-            } 
+        } catch (error) {
+            console.log(error);
+            setErrorMessage("Failed to get stats");
+            dispatch(setLoading(false));
+        } 
     };
 
     const renderCard = ({item: card}) => {
@@ -87,14 +97,12 @@ const HomeScreen = () => {
                 <Label text = "Enter username:"/>
                 <TextInput onChangeText={text=>setName(text)} style ={styles.input}/>
                 <Label text = "Select region:"/>
-                <Picker 
-                    selectedValue = {selectedValue} 
+                <Picker selectedValue = {selectedValue} 
                     onValueChange = {value => {
                         setSelectedValue(value);
                         setRegionState(value);
                     }} 
-                    style = {styles.picker}
-                >
+                    style = {styles.picker}>
                     <Picker.Item label="EU Nordic and East" value="eun1" />
                     <Picker.Item label="EU West" value="euw1" />
                 </Picker>
@@ -130,6 +138,7 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.inputBackground,
     },
     error: {
+        
         color: Colors.danger,
         marginVertical: 10,
     },
