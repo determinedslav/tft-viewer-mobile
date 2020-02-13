@@ -54,7 +54,7 @@ const HomeScreen = () => {
             const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + responseName.data.id + API.key);
             console.log(region + name);
                 if(responseStats && responseStats.hasOwnProperty('data')){
-                    const newerCards = responseStats.data.map(item=>{
+                    const newCardItem = responseStats.data.map(item=>{
                         return {
                             region: regionFull,
                             name: item.summonerName,
@@ -64,9 +64,9 @@ const HomeScreen = () => {
                             lp: item.leaguePoints,
                         }
                     });
-                    console.log(newerCards);
+                    console.log(newCardItem);
                     setTimeout(() =>{
-                        dispatch(setStats(newerCards));                     
+                        dispatch(setStats(newCardItem));                     
                         dispatch(setLoading(false));
                     },1000);
                 } 

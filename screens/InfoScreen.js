@@ -16,10 +16,10 @@ import Button from '../components/Button';
 
 const InfoScreen = () => {
 
-    const [region, setRegion] = useState('');
+    const [region, setRegion] = useState('EU Nordic and East');
     const [name, setName] = useState('');
-    const [rank, setRank] = useState('');
-    const [division, setDivision] = useState('');
+    const [rank, setRank] = useState('IRON');
+    const [division, setDivision] = useState('I');
     const [wins, setWins] = useState('');
     const [lp, setLp] = useState('');
 
