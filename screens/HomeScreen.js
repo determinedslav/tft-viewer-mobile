@@ -25,7 +25,6 @@ const HomeScreen = () => {
     const [region, setRegion] = useState('eun1');
     const [regionFull, setRegionFull] = useState('EU Nordic and East');
     const [name, setName] = useState(' ');
-    const [nameId, setNameId] = useState(' ');
     const [errorMessage, setErrorMessage] = useState(' ');
 
     const stats = useSelector(state => state.stats);
@@ -34,7 +33,6 @@ const HomeScreen = () => {
 
     const setRegionState = (value) => {
         setRegion(value);
-        console.log(value);
         switch(value) {
             case 'eun1':
                 setRegionFull('EU Nordic and East');
@@ -48,14 +46,13 @@ const HomeScreen = () => {
     };
     
     const getStats = async () => {
-        console.log(region + name + nameId);
+        console.log(region + name);
         dispatch(setLoading(true));
         const responseName = await Remote.get(API.protocol + region + API.apiLink + API.nameApi + name + API.key);
         if(responseName && responseName.hasOwnProperty('data')){
-            setNameId(responseName.data.id)
             setTimeout(() =>{},1000);
-            const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + nameId + API.key);
-            console.log(region + name + nameId);
+            const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + responseName.data.id + API.key);
+            console.log(region + name);
                 if(responseStats && responseStats.hasOwnProperty('data')){
                     const newerCards = responseStats.data.map(item=>{
                         return {
