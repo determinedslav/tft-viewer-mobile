@@ -7,7 +7,7 @@ import {
     Picker,
 } from 'react-native';
 
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {setStats} from '../redux/actions/stats';
 import Colors from '../constants/Colors';
 import Layout from '../layout/Layout';
@@ -22,7 +22,6 @@ const InfoScreen = () => {
     const [wins, setWins] = useState('');
     const [lp, setLp] = useState('');
 
-    const stats = useSelector(state=>state.stats);
     const dispatch = useDispatch();
 
     function create() {

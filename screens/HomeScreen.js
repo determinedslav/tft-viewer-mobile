@@ -46,13 +46,11 @@ const HomeScreen = () => {
     };
     
     const getStats = async () => {
-        console.log(region + name);
         dispatch(setLoading(true));
         const responseName = await Remote.get(API.protocol + region + API.apiLink + API.nameApi + name + API.key);
         if(responseName && responseName.hasOwnProperty('data')){
             setTimeout(() =>{},1000);
             const responseStats = await Remote.get(API.protocol + region + API.apiLink + API.statsApi + responseName.data.id + API.key);
-            console.log(region + name);
                 if(responseStats && responseStats.hasOwnProperty('data')){
                     const newCardItem = responseStats.data.map(item=>{
                         return {
@@ -64,7 +62,6 @@ const HomeScreen = () => {
                             lp: item.leaguePoints,
                         }
                     });
-                    console.log(newCardItem);
                     setTimeout(() =>{
                         dispatch(setStats(newCardItem));                     
                         dispatch(setLoading(false));

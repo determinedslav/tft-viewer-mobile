@@ -6,11 +6,3 @@ export function setStats(stats) {
         payload: stats
     }
 }
-
-export function deleteStat(stat) {
-    return {
-        type: types.DELETE_STAT,
-        payload: stat
-    }
-}
-
