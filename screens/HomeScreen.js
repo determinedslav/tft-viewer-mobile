@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {
     View,
     Text,
@@ -9,7 +9,7 @@ import {
     ActivityIndicator,
 } from 'react-native';
 import {useSelector, useDispatch} from "react-redux";
-import {setStats, deleteStat} from '../redux/actions/stats';
+import {setStats} from '../redux/actions/stats';
 import {setLoading} from '../redux/actions/loading';
 import Remote from '../remote';
 import Layout from '../layout/Layout';
@@ -81,7 +81,6 @@ const HomeScreen = () => {
                     division={card.division}
                     wins={card.wins}
                     lp={card.lp}
-                    //onPress={()=>handleDelete(card)}
                 />
     }
 

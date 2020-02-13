@@ -10,7 +10,6 @@ import {
 import { useSelector, useDispatch } from 'react-redux';
 import {setStats} from '../redux/actions/stats';
 import Colors from '../constants/Colors';
-import Styles from '../constants/Styles';
 import Layout from '../layout/Layout';
 import Button from '../components/Button';
 
@@ -41,33 +40,33 @@ const InfoScreen = () => {
 
     return (
         <Layout>
-            <View style = {Styles.styles.container}>
+            <View style = {styles.container}>
                 <Text style = {styles.title}>Create your own statistics</Text>
-                <View style = {Styles.styles.rowContainer}>
-                    <Picker selectedValue={region} onValueChange={value=>setRegion(value)} style = {[Styles.styles.input, Styles.styles.flex1]}>
+                <View style = {styles.rowContainer}>
+                    <Picker selectedValue={region} onValueChange={value=>setRegion(value)} style = {[styles.input, styles.flex1]}>
                         <Picker.Item label="EU Nordic and East" value="EU Nordic and East" />
                         <Picker.Item label="EU West" value="EU West" />
                     </Picker>
                 </View>
-                <View style = {Styles.styles.rowContainer}>
-                    <TextInput placeholder = "Username" value={name} onChangeText={text=>setName(text)} style ={[Styles.styles.input, Styles.styles.flex1]}/>
+                <View style = {styles.rowContainer}>
+                    <TextInput placeholder = "Username" value={name} onChangeText={text=>setName(text)} style ={[styles.input, styles.flex1]}/>
                 </View>
-                <View style = {Styles.styles.rowContainer}>
-                    <Picker selectedValue={rank} onValueChange={value=>setRank(value)} style = {[Styles.styles.input, Styles.styles.flex3]}>
+                <View style = {styles.rowContainer}>
+                    <Picker selectedValue={rank} onValueChange={value=>setRank(value)} style = {[styles.input, styles.flex3]}>
                         <Picker.Item label="IRON" value="IRON" />
                         <Picker.Item label="BRONZE" value="BRONZE" />
                     </Picker>
-                    <Picker selectedValue={division} onValueChange={value=>setDivision(value)} style = {[Styles.styles.input, Styles.styles.flex1]}>
+                    <Picker selectedValue={division} onValueChange={value=>setDivision(value)} style = {[styles.input, styles.flex1]}>
                         <Picker.Item label="I" value="I" />
                         <Picker.Item label="II" value="II" />
                         <Picker.Item label="III" value="III" />
                         <Picker.Item label="IV" value="IV" />
                     </Picker>
                 </View>
-                <View style = {Styles.styles.rowContainer}>
-                    <TextInput placeholder = "Wins" value={wins} onChangeText={text=>setWins(text)} style ={[Styles.styles.input, Styles.styles.flex2]}/>
+                <View style = {styles.rowContainer}>
+                    <TextInput placeholder = "Wins" value={wins} onChangeText={text=>setWins(text)} style ={[styles.input, styles.flex2]}/>
                     <Text style = {styles.text}>Wins</Text>
-                    <TextInput placeholder = "LP" value={lp} onChangeText={text=>setLp(text)} style ={[Styles.styles.input, Styles.styles.flex2]}/>
+                    <TextInput placeholder = "LP" value={lp} onChangeText={text=>setLp(text)} style ={[styles.input, styles.flex2]}/>
                     <Text style = {styles.text}>LP</Text>
                 </View>
                 <Button onPress ={create} style = {styles.button} title="Create"/>
@@ -77,6 +76,32 @@ const InfoScreen = () => {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        backgroundColor: Colors.containerBackground,
+        padding: 15,
+        borderRadius: 5,
+    },
+    flex1: {
+        flex: 1,
+    },
+    flex2: {
+        flex: 2,
+    },
+    flex3: {
+        flex: 3,
+    },
+    input: {
+        borderWidth: 1,
+        borderColor: Colors.borderLight,
+        borderRadius: 5,
+        backgroundColor: Colors.inputBackground,
+        padding: 5,
+        marginHorizontal: 10,
+    },
+    rowContainer: {
+        flexDirection: 'row',  
+        marginTop: 20,
+    },
     title: {
         fontSize: 20,
         fontWeight: 'bold',
