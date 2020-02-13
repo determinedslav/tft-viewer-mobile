@@ -15,6 +15,8 @@ import Button from '../components/Button';
 
 const InfoScreen = () => {
 
+    const [message, setMessage] = useState(' ');
+
     const [region, setRegion] = useState('EU Nordic and East');
     const [name, setName] = useState('');
     const [rank, setRank] = useState('IRON');
@@ -35,6 +37,10 @@ const InfoScreen = () => {
         };
         const newStats = [newItem] 
         dispatch(setStats(newStats));
+        setMessage("New card created")
+        setTimeout(() =>{
+            setMessage(" ")
+        },5000);
     }
 
     return (
@@ -68,6 +74,7 @@ const InfoScreen = () => {
                     <TextInput placeholder = "LP" value={lp} onChangeText={text=>setLp(text)} style ={[styles.input, styles.flex2]}/>
                     <Text style = {styles.text}>LP</Text>
                 </View>
+                <Text style = {styles.message}>{message}</Text>
                 <Button onPress ={create} style = {styles.button} title="Create"/>
             </View>
         </Layout>
@@ -111,6 +118,11 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         fontWeight: 'bold',
         flex: 1,
+    },
+    message: {
+        alignSelf: 'center',
+        fontSize: 16,
+        marginTop: 20,
     },
     button: {
         backgroundColor: Colors.primary,

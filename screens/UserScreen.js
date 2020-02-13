@@ -7,7 +7,7 @@ const UserSreen = () => {
     return (
         <Layout>
             <View>
-                <Text>User screen</Text>
+                <Text>This screen is currently unavaliable</Text>
             </View>
         </Layout>
     )

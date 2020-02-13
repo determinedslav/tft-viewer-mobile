@@ -138,7 +138,6 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.inputBackground,
     },
     error: {
-        
         color: Colors.danger,
         marginVertical: 10,
     },
