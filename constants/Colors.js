@@ -10,7 +10,7 @@ export default {
     secondary: '#24e297',
     primary: '#11c2d5',
     danger: '#d53d5d',
-    iconBackground: '#72cc5d',
+    iconBackground: '#4f4f4f',
     borderLight: '#efefef',
     containerBackground: '#f5f5f5',
     inputBackground: '#fcfcfc',
