@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
 });
 const menuItems = [
     {
-        name: "Начало",
+        name: "Home",
         route: "Home",
         icon: <FontAwesome
             style={styles.icon}
@@ -57,20 +57,20 @@ const menuItems = [
             color="#ffffff"/>,
     },
     {
-        name: "Информация",
+        name: "Card Generator",
         route: "Info",
         icon: <Entypo
             style={styles.icon}
-            name="info"
+            name="edit"
             size={16}
             color="#ffffff"/>,
     },
     {
-        name: "Потребител",
+        name: "User",
         route: "User",
         icon: <Entypo
             style={styles.icon}
-            name="info"
+            name="user"
             size={16}
             color="#ffffff"/>,
     },
