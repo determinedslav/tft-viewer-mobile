@@ -35,7 +35,7 @@ const InfoScreen = () => {
             wins,
             lp,
         };
-        const newStats = [...stats, newItem] 
+        const newStats = [newItem] 
         dispatch(setStats(newStats));
     }
 
