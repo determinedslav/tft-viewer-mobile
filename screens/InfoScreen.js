@@ -27,20 +27,28 @@ const InfoScreen = () => {
     const dispatch = useDispatch();
 
     function create() {
-        const newItem = {
-            region,
-            name,
-            rank,
-            division,
-            wins,
-            lp,
-        };
-        const newStats = [newItem] 
-        dispatch(setStats(newStats));
-        setMessage("New card created")
-        setTimeout(() =>{
-            setMessage(" ")
-        },5000);
+        if (name.length < 4 || name.length > 16) {
+            setMessage("Summoner names are between 4 and 16 symbols long");
+        } else if (isNaN(lp) || isNaN(wins)) {
+            setMessage("use a number for wins and lp");
+        } else if (lp>100) {
+            setMessage("You can't have more than 100 lp");
+        } else {
+            const newItem = {
+                region,
+                name,
+                rank,
+                division,
+                wins,
+                lp,
+            };
+            const newStats = [newItem] 
+            dispatch(setStats(newStats));
+            setMessage("New card created")
+            setTimeout(() =>{
+                setMessage(" ")
+            },5000);
+        }
     }
 
     return (
@@ -60,6 +68,10 @@ const InfoScreen = () => {
                     <Picker selectedValue={rank} onValueChange={value=>setRank(value)} style = {[styles.input, styles.flex3]}>
                         <Picker.Item label="IRON" value="IRON" />
                         <Picker.Item label="BRONZE" value="BRONZE" />
+                        <Picker.Item label="SILVER" value="SILVER" />
+                        <Picker.Item label="GOLD" value="GOLD" />
+                        <Picker.Item label="PLATINUM" value="PLATINUM" />
+                        <Picker.Item label="DIAMOND" value="DIAMOND" />    
                     </Picker>
                     <Picker selectedValue={division} onValueChange={value=>setDivision(value)} style = {[styles.input, styles.flex1]}>
                         <Picker.Item label="I" value="I" />
