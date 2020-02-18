@@ -14,10 +14,10 @@ const Drawer = createDrawerNavigator(
     {
         Home: {screen: HomeScreen},
         Info: {screen: InfoScreen},
-        User: { screen: UserScreen },
+        User: {screen: UserScreen},
     },
     {
-        initialRouteName: "Home",
+        initialRouteName: "User",
         contentComponent: props => <SideBar {...props} />
     }
 );
@@ -29,7 +29,7 @@ const RootStack = createStackNavigator(
         },
         Home: {screen: HomeScreen},
         Info: {screen: InfoScreen},
-        User: { screen: UserScreen },
+        //User: { screen: UserScreen },
     },
     {
         initialRouteName: "Drawer",

@@ -65,7 +65,7 @@ const menuItems = [
             size={16}
             color="#ffffff"/>,
     },
-    {
+    /*{
         name: "User",
         route: "User",
         icon: <Entypo
@@ -73,6 +73,6 @@ const menuItems = [
             name="user"
             size={16}
             color="#ffffff"/>,
-    },
+    },*/
 
 ];
