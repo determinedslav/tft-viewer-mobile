@@ -45,6 +45,14 @@ const HomeScreen = () => {
           }
     };
     
+    const validate = () => {
+        if (name.length < 4 || name.length > 16) {
+            setErrorMessage("Summoner names are between 4 and 16 symbols long");
+        } else {
+            getStats();
+        }
+    }
+
     const getStats = async () => {
         dispatch(setLoading(true));
         setErrorMessage(" ");
@@ -107,7 +115,7 @@ const HomeScreen = () => {
                     <Picker.Item label="EU West" value="euw1" />
                 </Picker>
                 <Text style={styles.error}>{errorMessage}</Text>
-                <Button onPress={getStats} style={styles.button} title="Search" />
+                <Button onPress={validate} style={styles.button} title="Search" />
             </View>
             {isLoading ? <ActivityIndicator/> :
             <FlatList 

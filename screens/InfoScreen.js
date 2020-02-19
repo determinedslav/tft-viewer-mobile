@@ -7,7 +7,7 @@ import {
     Picker,
 } from 'react-native';
 
-import { useDispatch } from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {setStats} from '../redux/actions/stats';
 import Colors from '../constants/Colors';
 import Layout from '../layout/Layout';
@@ -21,35 +21,39 @@ const InfoScreen = () => {
     const [name, setName] = useState('');
     const [rank, setRank] = useState('IRON');
     const [division, setDivision] = useState('I');
-    const [wins, setWins] = useState('0');
-    const [lp, setLp] = useState('0');
+    const [wins, setWins] = useState(0);
+    const [lp, setLp] = useState(0);
 
     const dispatch = useDispatch();
 
-    function create() {
+    const validate = () => {
         if (name.length < 4 || name.length > 16) {
             setMessage("Summoner names are between 4 and 16 symbols long");
         } else if (isNaN(lp) || isNaN(wins)) {
-            setMessage("use a number for wins and lp");
-        } else if (lp>100) {
+            setMessage("Use a number for wins and lp");
+        } else if (lp > 100) {
             setMessage("You can't have more than 100 lp");
         } else {
-            const newItem = {
-                region,
-                name,
-                rank,
-                division,
-                wins,
-                lp,
-            };
-            const newStats = [newItem] 
-            dispatch(setStats(newStats));
-            setMessage("New card created")
-            setTimeout(() =>{
-                setMessage(" ")
-            },5000);
+            create();
         }
-    }
+    };
+
+    const create = () => {
+        const newItem = {
+            region,
+            name,
+            rank,
+            division,
+            wins,
+            lp,
+        };
+        const newStats = [newItem] 
+        dispatch(setStats(newStats));
+        setMessage("New card created")
+        setTimeout(() =>{
+            setMessage(" ")
+        },5000);
+    };
 
     return (
         <Layout>
@@ -81,13 +85,13 @@ const InfoScreen = () => {
                     </Picker>
                 </View>
                 <View style = {styles.rowContainer}>
-                    <TextInput placeholder = "Wins" value={wins} onChangeText={text=>setWins(text)} style ={[styles.input, styles.flex2]}/>
+                    <TextInput placeholder = "Wins" value={wins} onChangeText={text=>setWins(parseInt(text, 10))} style ={[styles.input, styles.flex2]}/>
                     <Text style = {styles.text}>Wins</Text>
-                    <TextInput placeholder = "LP" value={lp} onChangeText={text=>setLp(text)} style ={[styles.input, styles.flex2]}/>
+                    <TextInput placeholder = "LP" value={lp} onChangeText={text=>setLp(parseInt(text, 10))} style ={[styles.input, styles.flex2]}/>
                     <Text style = {styles.text}>LP</Text>
                 </View>
                 <Text style = {styles.message}>{message}</Text>
-                <Button onPress ={create} style = {styles.button} title="Create"/>
+                <Button onPress ={validate} style = {styles.button} title="Create"/>
             </View>
         </Layout>
     )
