@@ -21,8 +21,8 @@ const InfoScreen = () => {
     const [name, setName] = useState('');
     const [rank, setRank] = useState('IRON');
     const [division, setDivision] = useState('I');
-    const [wins, setWins] = useState(0);
-    const [lp, setLp] = useState(0);
+    const [wins, setWins] = useState('0');
+    const [lp, setLp] = useState('0');
 
     const dispatch = useDispatch();
 

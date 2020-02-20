@@ -5,12 +5,13 @@ import {
     TextInput,
     Text
 } from "react-native";
+import { createStackNavigator } from 'react-navigation-stack';
 import Layout from "../layout/Layout";
 import Colors from '../constants/Colors';
 import Button from '../components/Button';
 import Label from '../components/Label';
 
-const UserSreen = () => {
+const UserSreen = ({navigation}) => {
 
     return (
         <Layout>
@@ -20,7 +21,7 @@ const UserSreen = () => {
                 <TextInput style ={styles.input}/>
                 <Label text = "Password:"/>
                 <TextInput secureTextEntry={true} style ={styles.input}/>
-                <Button onPress={console.log('pressed')} style={styles.button} title="Login" />
+                <Button onPress={() => navigation.navigate('Home')} style={styles.button} title="Login" />
             </View>
         </Layout>
     )
