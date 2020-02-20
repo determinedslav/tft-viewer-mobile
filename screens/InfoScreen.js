@@ -85,9 +85,9 @@ const InfoScreen = () => {
                     </Picker>
                 </View>
                 <View style = {styles.rowContainer}>
-                    <TextInput placeholder = "Wins" value={wins} onChangeText={text=>setWins(parseInt(text, 10))} style ={[styles.input, styles.flex2]}/>
+                    <TextInput placeholder = "Wins" value={wins} onChangeText={text=>setWins(parseInt(text, 10))} keyboardType = 'numeric' style ={[styles.input, styles.flex2]}/>
                     <Text style = {styles.text}>Wins</Text>
-                    <TextInput placeholder = "LP" value={lp} onChangeText={text=>setLp(parseInt(text, 10))} style ={[styles.input, styles.flex2]}/>
+                    <TextInput placeholder = "LP" value={lp} onChangeText={text=>setLp(parseInt(text, 10))} keyboardType = 'numeric' style ={[styles.input, styles.flex2]}/>
                     <Text style = {styles.text}>LP</Text>
                 </View>
                 <Text style = {styles.message}>{message}</Text>
