@@ -3,9 +3,11 @@ import {
     View, 
     StyleSheet, 
     TextInput,
-    Text
+    Text,
+    ActivityIndicator
 } from "react-native";
-import { createStackNavigator } from 'react-navigation-stack';
+import {setLoading} from '../redux/actions/loading';
+import {useSelector, useDispatch} from "react-redux";
 import Layout from "../layout/Layout";
 import Colors from '../constants/Colors';
 import Button from '../components/Button';
@@ -13,16 +15,29 @@ import Label from '../components/Label';
 
 const UserSreen = ({navigation}) => {
 
+    const isLoading = useSelector(state => state.loading);
+    const dispatch = useDispatch();
+
+    const login = () => {
+        dispatch(setLoading(true));
+        setTimeout(() =>{
+            navigation.navigate('Home');
+            dispatch(setLoading(false));
+        },2000);
+    }
+
     return (
         <Layout>
+            {isLoading ? <ActivityIndicator/> :
             <View style={styles.container}>
                 <Text style = {styles.title}>Login to your account</Text>
                 <Label text = "Username:"/>
                 <TextInput style ={styles.input}/>
                 <Label text = "Password:"/>
                 <TextInput secureTextEntry={true} style ={styles.input}/>
-                <Button onPress={() => navigation.navigate('Home')} style={styles.button} title="Login" />
+                <Button onPress={login} style={styles.button} title="Login" />
             </View>
+            }
         </Layout>
     )
 }
